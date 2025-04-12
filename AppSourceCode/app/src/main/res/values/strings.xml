@@ -1,4 +1,17 @@
 <resources>
     <string name="app_name">UserApp</string>
     <string name="str_users">Users</string>
+    <string name="str_company">Company</string>
+    <string name="str_user_name">Username</string>
+    <string name="str_email">Email</string>
+    <string name="str_address">Address</string>
+    <string name="str_zip">Zip</string>
+    <string name="str_state">State</string>
+    <string name="str_country">Country</string>
+    <string name="str_phone">Phone</string>
+    <string name="str_retry">Retry</string>
+    <string name="str_something_went_wrong">Something went wrong</string>
+    <string name="str_error">Error</string>
+    <string name="str_no_data">No Data</string>
+
 </resources>

@@ -1,6 +1,5 @@
 package com.amits.quickuserapp.data.repository
 
-import com.amits.quickuserapp.data.mapper.toDomain
 import com.amits.quickuserapp.data.repository.datasource.LocalUserDataSource
 import com.amits.quickuserapp.data.repository.datasource.RemoteUserDataSource
 import com.amits.quickuserapp.domain.model.User
@@ -41,5 +40,17 @@ class UserRepositoryImpl @Inject constructor(
             }
             emit(localUserDataSource.getUsers()) // Emit updated local data
         }
+    }
+
+    /**
+     * Fetches a user by their ID as a Flow.
+     * The method retrieves the user from the local database and emits it if found.
+     *
+     * @param id The unique identifier of the user to fetch.
+     * @return A Flow emitting the User object or null if not found.
+     */
+    override suspend fun getUserById(id: Int): Flow<User?> = flow<User?> {
+        val userData = localUserDataSource.getUserById(id)
+        emit(userData)
     }
 }

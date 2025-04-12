@@ -32,7 +32,8 @@ import com.amits.quickuserapp.presentation.UserViewModel
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun UserListScreen(
-    viewModel: UserViewModel = hiltViewModel()
+    viewModel: UserViewModel = hiltViewModel(),
+    onUserClick: (Int) -> Unit
 ) {
     val state by viewModel.state.collectAsState()
 
@@ -65,16 +66,20 @@ fun UserListScreen(
                 }
 
                 is UserUiState.Error -> {
-                    // Need to handle the Error case
+                    ErrorScreen {
+                        // First, remove the error state by setting Loading
+                        viewModel.setLoadingState()
+                        // Load the data using API calls 
+                        viewModel.loadUsers()
+                    }
+
                 }
 
                 is UserUiState.Success -> {
                     LazyColumn {
                         items((state as UserUiState.Success).users) { user ->
                             Column {
-                                ListItem(user = user, onClick = {
-                                    //Need to handle on click for next Screens
-                                })
+                                ListItem(user = user, onClick = { onUserClick(user.id) })
                                 HorizontalDivider(
                                     thickness = dimensionResource(id = R.dimen.thick_ness),
                                     color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.08f)
@@ -92,9 +97,7 @@ fun UserListScreen(
 fun UserListContent(users: List<User>, onUserClick: (Int) -> Unit) {
     LazyColumn {
         items(users) { user ->
-            ListItem(user = user, onClick = {
-                // Need to handle the Onclick when we have next screen
-            })
+            ListItem(user = user, onClick = { onUserClick(user.id) })
         }
     }
 }
@@ -135,3 +138,4 @@ fun UserListContentPreview() {
 
     UserListContent(users = users, onUserClick = {})
 }
+
