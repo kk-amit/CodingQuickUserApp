@@ -5,6 +5,8 @@ plugins {
     //apply Hilt Plugin
     id("com.google.dagger.hilt.android")
     kotlin("kapt")
+
+    alias(libs.plugins.ksp)
 }
 
 android {
@@ -92,5 +94,12 @@ dependencies {
     // Coil Image loading Library
     implementation(libs.coil.compose)
     implementation(libs.coil.network)
+
+    // Room
+    implementation(libs.room.runtime)
+    // Use KSP for annotation processing instead of kapt
+    ksp(libs.androidx.room.compiler)
+    // Optionally, if using Room with Kotlin extensions
+    implementation(libs.androidx.room.ktx)
 
 }

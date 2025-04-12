@@ -1,6 +1,6 @@
 package com.amits.quickuserapp.data.api
 
-import com.amits.quickuserapp.data.model.UserRemote
+import com.amits.quickuserapp.data.model.UserEntity
 import retrofit2.http.GET
 
 /**
@@ -16,5 +16,5 @@ interface UserApiService {
      * This method is a suspend function, meaning it must be called within a coroutine or another suspend function.
      */
     @GET("users")
-    suspend fun getUsers(): List<UserRemote>
+    suspend fun getUsers(): List<UserEntity>
 }
