@@ -12,6 +12,12 @@ import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.retryWhen
 import javax.inject.Inject
 
+/**
+ * Data source for managing remote user data.
+ * This class provides methods to fetch user data from a remote API.
+ *
+ * @property api The UserApiService instance used to perform API calls.
+ */
 class RemoteUserDataSource @Inject constructor(
     private val api: UserApiService
 ) {

@@ -25,9 +25,7 @@ import com.amits.quickuserapp.util.MAX_LINES
 
 @Composable
 fun ListItem(user: User, onClick: () -> Unit) {
-
     val TAG = "ListItem"
-
     Row(
         modifier = Modifier
             .fillMaxWidth()
@@ -46,7 +44,7 @@ fun ListItem(user: User, onClick: () -> Unit) {
             },
             onError = {
                 // Log Error Message
-                Log.e(TAG, "Error loading image: ${it.result.throwable}")
+                Log.d(TAG, "Error loading image: ${it.result.throwable}")
             },
             error = painterResource(R.drawable.ic_launcher_background),
             fallback = painterResource(R.drawable.ic_launcher_background),
