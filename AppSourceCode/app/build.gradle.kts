@@ -6,6 +6,7 @@ plugins {
     id("com.google.dagger.hilt.android")
     kotlin("kapt")
 
+    // KPS Plugin to support ROOM
     alias(libs.plugins.ksp)
 }
 
@@ -101,5 +102,10 @@ dependencies {
     ksp(libs.androidx.room.compiler)
     // Optionally, if using Room with Kotlin extensions
     implementation(libs.androidx.room.ktx)
+
+    // Testing
+    testImplementation(libs.junit)
+    testImplementation(libs.mockk)
+    testImplementation(libs.kotlinx.coroutines.test)
 
 }
