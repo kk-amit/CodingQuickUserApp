@@ -1,14 +1,21 @@
 package com.amits.quickuserapp.di
 
+import android.content.Context
+import androidx.room.Room
 import com.amits.quickuserapp.BuildConfig
 import com.amits.quickuserapp.data.api.UserApiService
+import com.amits.quickuserapp.data.db.UserDao
+import com.amits.quickuserapp.data.db.UserDatabase
 import com.amits.quickuserapp.data.repository.UserRepositoryImpl
+import com.amits.quickuserapp.data.repository.datasource.LocalUserDataSource
 import com.amits.quickuserapp.data.repository.datasource.RemoteUserDataSource
 import com.amits.quickuserapp.domain.repository.UserRepository
 import com.amits.quickuserapp.util.BASE_URL
+import com.amits.quickuserapp.util.DB_FILE_NAME
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
@@ -51,13 +58,24 @@ object UserAppModule {
             .create(UserApiService::class.java)
     }
 
+
+    @Provides
+    @Singleton
+    fun provideDatabase(@ApplicationContext context: Context): UserDatabase =
+        Room.databaseBuilder(context, UserDatabase::class.java, DB_FILE_NAME).build()
+
+    @Provides
+    fun provideDao(db: UserDatabase): UserDao = db.userDao()
+
     @Provides
     @Singleton
     fun provideRepository(
         remoteUserDataSource: RemoteUserDataSource,
+        localUserDataSource: LocalUserDataSource
     ): UserRepository =
         UserRepositoryImpl(
             remoteUserDataSource = remoteUserDataSource,
+            localUserDataSource = localUserDataSource
         )
 
     //@IODispatcher

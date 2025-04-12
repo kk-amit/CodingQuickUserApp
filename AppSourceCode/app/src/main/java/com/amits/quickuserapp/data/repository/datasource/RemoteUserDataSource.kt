@@ -2,7 +2,7 @@ package com.amits.quickuserapp.data.repository.datasource
 
 import android.util.Log
 import com.amits.quickuserapp.data.api.UserApiService
-import com.amits.quickuserapp.data.model.UserRemote
+import com.amits.quickuserapp.data.model.UserEntity
 import com.amits.quickuserapp.util.API_DELAY_TIME
 import com.amits.quickuserapp.util.API_RETRY_COUNT
 import kotlinx.coroutines.delay
@@ -16,7 +16,14 @@ class RemoteUserDataSource @Inject constructor(
     private val api: UserApiService
 ) {
 
-    fun fetchUsers(): Flow<List<UserRemote>> = flow {
+    /**
+     * Fetches a list of users from the remote API.
+     * The flow retries the API call a specified number of times in case of failure
+     * and emits an empty list if an error occurs after all retries.
+     *
+     * @return A Flow emitting a list of UserEntity objects retrieved from the API.
+     */
+    fun fetchUsers(): Flow<List<UserEntity>> = flow {
         // Emit the list of users fetched from the API
         emit(api.getUsers())
     }.retryWhen { _, attempt ->
