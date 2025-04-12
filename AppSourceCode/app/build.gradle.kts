@@ -25,6 +25,9 @@ android {
     }
 
     buildTypes {
+        debug {
+            isDebuggable = true
+        }
         release {
             isMinifyEnabled = false
             proguardFiles(
@@ -42,6 +45,7 @@ android {
     }
     buildFeatures {
         compose = true
+        buildConfig = true
     }
     composeOptions {
         kotlinCompilerExtensionVersion = "1.5.1"
@@ -79,4 +83,14 @@ dependencies {
     kapt(libs.hilt.android.compiler)
     implementation(libs.androidx.hilt.common)
     implementation(libs.androidx.hilt.navigation.compose)
+
+    // Retrofit Dependency
+    implementation(libs.retrofit)
+    implementation(libs.converter.gson)
+    implementation(libs.logging.interceptor)
+
+    // Coil Image loading Library
+    implementation(libs.coil.compose)
+    implementation(libs.coil.network)
+
 }

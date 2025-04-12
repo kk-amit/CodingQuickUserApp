@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="padding_small">8dp</dimen>
+    <dimen name="padding_medium">16dp</dimen>
+    <dimen name="corner_radius">16dp</dimen>
+    <dimen name="image_height">200dp</dimen>
+
+    <!-- Spacing -->
+    <dimen name="spacer_width">12dp</dimen>
+
+    <!-- Image Size -->
+    <dimen name="avatar_size">48dp</dimen>
+
+    <dimen name="corner_radius_12">12dp</dimen>
+    <dimen name="padding_horizontal_24">24dp</dimen>
+    <dimen name="padding_vertical_20">20dp</dimen>
+    <dimen name="spacer_height_16">16dp</dimen>
+
+    <dimen name="thick_ness">1dp</dimen>
+</resources>
