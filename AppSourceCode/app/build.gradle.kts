@@ -27,6 +27,14 @@ android {
         }
     }
 
+    kover {
+        isDisabled.set(false)
+        coverageEngine.set(kotlinx.kover.api.CoverageEngine.JACOCO)
+        xmlReport {
+            onCheck.set(true)
+        }
+    }
+
     buildTypes {
         debug {
             isDebuggable = true
