@@ -63,3 +63,20 @@ jobs:
         with:
           name: test-report
           path: AppSourceCode/app/build/reports/tests/testDebugUnitTest/
+
+      - name: Run Unit Tests New
+      run: ./gradlew testDebugUnitTest
+      working-directory: AppSourceCode
+
+      - name: Generate Code Coverage Report
+      run: ./gradlew koverXmlReport
+      working-directory: AppSourceCode
+
+    - name: Upload Coverage Report
+      uses: actions/upload-artifact@v4
+      with:
+      name: code-coverage-report
+      path: AppSourceCode/app/build/reports/kover/report.xml
+
+
+
